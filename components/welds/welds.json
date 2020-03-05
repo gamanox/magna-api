@@ -1,0 +1,20 @@
+{
+  "info": {
+    "name": "welds",
+    "icon": "wrench"
+  },
+  "options": {},
+  "attributes": {
+    "codename": {
+      "type": "string"
+    },
+    "reference": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_welds_welds"
+}

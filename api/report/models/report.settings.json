@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "reports",
+  "info": {
+    "name": "report"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "employee": {
+      "model": "operator",
+      "via": "reports"
+    },
+    "chassis": {
+      "model": "chassis",
+      "via": "reports"
+    },
+    "report_welds": {
+      "type": "component",
+      "repeatable": true,
+      "component": "welds.report-welds"
+    },
+    "start_time": {
+      "type": "biginteger"
+    },
+    "finish_time": {
+      "type": "biginteger"
+    },
+    "chassis_serial": {
+      "type": "string"
+    }
+  }
+}

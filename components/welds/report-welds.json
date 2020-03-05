@@ -1,0 +1,33 @@
+{
+  "connection": "default",
+  "collectionName": "components_welds_report_welds",
+  "info": {
+    "name": "report_welds",
+    "icon": "thermometer"
+  },
+  "options": {},
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "good",
+        "bad"
+      ]
+    },
+    "evidence": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "defect": {
+      "type": "enumeration",
+      "enum": [
+        "incomplete",
+        "missing",
+        "rework",
+        "good"
+      ]
+    }
+  }
+}

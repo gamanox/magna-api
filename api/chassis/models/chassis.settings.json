@@ -1,0 +1,40 @@
+{
+  "connection": "default",
+  "collectionName": "chassis",
+  "info": {
+    "name": "chassis"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "model_name": {
+      "type": "string"
+    },
+    "model_number": {
+      "type": "string"
+    },
+    "reference": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "welds": {
+      "type": "component",
+      "repeatable": true,
+      "component": "welds.welds"
+    },
+    "model_code": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "reports": {
+      "via": "chassis",
+      "collection": "report"
+    }
+  }
+}

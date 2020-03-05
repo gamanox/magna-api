@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "operators",
+  "info": {
+    "name": "operator"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "operator_number": {
+      "type": "string"
+    },
+    "code_image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false,
+      "private": true
+    },
+    "reports": {
+      "via": "employee",
+      "collection": "report"
+    }
+  }
+}
