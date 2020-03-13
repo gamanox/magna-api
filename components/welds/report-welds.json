@@ -28,6 +28,9 @@
         "rework",
         "good"
       ]
+    },
+    "operator_assigned_weld_id": {
+      "type": "integer"
     }
   }
 }

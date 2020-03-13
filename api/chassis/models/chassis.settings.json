@@ -22,9 +22,8 @@
       "required": false
     },
     "welds": {
-      "type": "component",
-      "repeatable": true,
-      "component": "welds.welds"
+      "via": "chassis",
+      "collection": "weld"
     },
     "model_code": {
       "model": "file",

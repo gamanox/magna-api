@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/operators": {
+    "/welds": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Operator"
+                    "$ref": "#/components/schemas/Weld"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Operator"
+          "Weld"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Operator"
+                  "$ref": "#/components/schemas/Weld"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Operator"
+          "Weld"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOperator"
+                "$ref": "#/components/schemas/NewWeld"
               }
             }
           }
         }
       }
     },
-    "/operators/count": {
+    "/welds/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Operator"
+          "Weld"
         ],
         "parameters": []
       }
     },
-    "/operators/{id}": {
+    "/welds/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Operator"
+                  "$ref": "#/components/schemas/Weld"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Operator"
+          "Weld"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Operator"
+                  "$ref": "#/components/schemas/Weld"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Operator"
+          "Weld"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOperator"
+                "$ref": "#/components/schemas/NewWeld"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Operator"
+          "Weld"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Operator": {
+      "Weld": {
         "required": [
           "id"
         ],
@@ -525,164 +525,49 @@
           "name": {
             "type": "string"
           },
-          "operator_number": {
-            "type": "string"
-          },
-          "code_image": {
+          "chassis": {
             "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
+              "id"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "name": {
+              "model_name": {
                 "type": "string"
               },
-              "hash": {
+              "model_number": {
                 "type": "string"
               },
-              "sha256": {
+              "reference": {
                 "type": "string"
               },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              }
-            }
-          },
-          "reports": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "employee": {
-                  "type": "string"
-                },
-                "chassis": {
-                  "type": "string"
-                },
-                "start_time": {
-                  "type": "integer"
-                },
-                "finish_time": {
-                  "type": "integer"
-                },
-                "chassis_serial": {
-                  "type": "string"
-                },
-                "report_welds": {
-                  "type": "component"
-                },
-                "Model_Number": {
+              "welds": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
-              }
-            }
-          },
-          "assigned_welds": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
+              },
+              "model_code": {
+                "type": "string"
+              },
+              "reports": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "welds": {
-                  "required": [
-                    "id"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "chassis": {
-                      "type": "string"
-                    }
-                  }
                 }
               }
             }
           }
         }
       },
-      "NewOperator": {
+      "NewWeld": {
         "properties": {
           "name": {
             "type": "string"
           },
-          "operator_number": {
+          "chassis": {
             "type": "string"
-          },
-          "reports": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "assigned_welds": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "welds": {
-                  "required": [
-                    "id"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "chassis": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -690,7 +575,7 @@
   },
   "tags": [
     {
-      "name": "Operator"
+      "name": "Weld"
     }
   ]
 }

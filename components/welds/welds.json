@@ -1,11 +1,13 @@
 {
+  "connection": "default",
+  "collectionName": "components_welds_welds",
   "info": {
     "name": "welds",
     "icon": "wrench"
   },
   "options": {},
   "attributes": {
-    "codename": {
+    "weld_name": {
       "type": "string"
     },
     "reference": {
@@ -14,7 +16,5 @@
       "plugin": "upload",
       "required": false
     }
-  },
-  "connection": "default",
-  "collectionName": "components_welds_welds"
+  }
 }

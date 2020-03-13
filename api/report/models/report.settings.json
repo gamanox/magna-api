@@ -17,11 +17,6 @@
       "model": "chassis",
       "via": "reports"
     },
-    "report_welds": {
-      "type": "component",
-      "repeatable": true,
-      "component": "welds.report-welds"
-    },
     "start_time": {
       "type": "biginteger"
     },
@@ -29,6 +24,14 @@
       "type": "biginteger"
     },
     "chassis_serial": {
+      "type": "string"
+    },
+    "report_welds": {
+      "type": "component",
+      "repeatable": true,
+      "component": "welds.report-welds"
+    },
+    "Model_Number": {
       "type": "string"
     }
   }

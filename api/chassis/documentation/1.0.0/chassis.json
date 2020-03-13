@@ -577,7 +577,6 @@
           "welds": {
             "type": "array",
             "items": {
-              "type": "object",
               "required": [
                 "id"
               ],
@@ -585,54 +584,11 @@
                 "id": {
                   "type": "string"
                 },
-                "codename": {
+                "name": {
                   "type": "string"
                 },
-                "reference": {
-                  "required": [
-                    "id",
-                    "name",
-                    "hash",
-                    "mime",
-                    "size",
-                    "url",
-                    "provider"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "hash": {
-                      "type": "string"
-                    },
-                    "sha256": {
-                      "type": "string"
-                    },
-                    "ext": {
-                      "type": "string"
-                    },
-                    "mime": {
-                      "type": "string"
-                    },
-                    "size": {
-                      "type": "number"
-                    },
-                    "url": {
-                      "type": "string"
-                    },
-                    "provider": {
-                      "type": "string"
-                    },
-                    "provider_metadata": {
-                      "type": "object"
-                    },
-                    "related": {
-                      "type": "string"
-                    }
-                  }
+                "chassis": {
+                  "type": "string"
                 }
               }
             }
@@ -699,9 +655,6 @@
                 "chassis": {
                   "type": "string"
                 },
-                "report_welds": {
-                  "type": "component"
-                },
                 "start_time": {
                   "type": "integer"
                 },
@@ -709,6 +662,12 @@
                   "type": "integer"
                 },
                 "chassis_serial": {
+                  "type": "string"
+                },
+                "report_welds": {
+                  "type": "component"
+                },
+                "Model_Number": {
                   "type": "string"
                 }
               }
@@ -727,64 +686,7 @@
           "welds": {
             "type": "array",
             "items": {
-              "type": "object",
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "codename": {
-                  "type": "string"
-                },
-                "reference": {
-                  "required": [
-                    "id",
-                    "name",
-                    "hash",
-                    "mime",
-                    "size",
-                    "url",
-                    "provider"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "hash": {
-                      "type": "string"
-                    },
-                    "sha256": {
-                      "type": "string"
-                    },
-                    "ext": {
-                      "type": "string"
-                    },
-                    "mime": {
-                      "type": "string"
-                    },
-                    "size": {
-                      "type": "number"
-                    },
-                    "url": {
-                      "type": "string"
-                    },
-                    "provider": {
-                      "type": "string"
-                    },
-                    "provider_metadata": {
-                      "type": "object"
-                    },
-                    "related": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
+              "type": "string"
             }
           },
           "reports": {

@@ -1,0 +1,14 @@
+{
+  "connection": "default",
+  "collectionName": "components_welds_assigned_welds",
+  "info": {
+    "name": "assigned_welds",
+    "icon": "allergies"
+  },
+  "options": {},
+  "attributes": {
+    "welds": {
+      "collection": "weld"
+    }
+  }
+}

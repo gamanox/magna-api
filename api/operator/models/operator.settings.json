@@ -19,12 +19,16 @@
       "model": "file",
       "via": "related",
       "plugin": "upload",
-      "required": false,
-      "private": true
+      "required": false
     },
     "reports": {
       "via": "employee",
       "collection": "report"
+    },
+    "assigned_welds": {
+      "type": "component",
+      "repeatable": true,
+      "component": "welds.assigned-welds"
     }
   }
 }
