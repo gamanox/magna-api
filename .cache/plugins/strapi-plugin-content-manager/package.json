@@ -1,32 +1,30 @@
 {
-  "_from": "strapi-plugin-content-manager@3.1.7",
-  "_id": "strapi-plugin-content-manager@3.1.7",
+  "_from": "strapi-plugin-content-manager@3.3.0",
+  "_id": "strapi-plugin-content-manager@3.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-iuF5i3p9RKJznefQoenKs9oVQ/ipblfibve/Ll2C65NHVoJzcbBQi9JQDjygipxwQJWsogNzLE/LtoPafLogbA==",
+  "_integrity": "sha512-DAiiuzHqmvBkmUugdCdz7F7TRrTcUGK4QnnE2SoBP38xMaiZi+dLC5e30Fo3a4Y+pdY77lrCK7XwkTT6Yavtiw==",
   "_location": "/strapi-plugin-content-manager",
   "_phantomChildren": {
     "@babel/runtime": "7.12.5",
-    "fn-name": "2.0.1",
-    "property-expr": "1.5.1",
     "synchronous-promise": "2.0.15",
     "toposort": "2.0.2"
   },
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "strapi-plugin-content-manager@3.1.7",
+    "raw": "strapi-plugin-content-manager@3.3.0",
     "name": "strapi-plugin-content-manager",
     "escapedName": "strapi-plugin-content-manager",
-    "rawSpec": "3.1.7",
+    "rawSpec": "3.3.0",
     "saveSpec": null,
-    "fetchSpec": "3.1.7"
+    "fetchSpec": "3.3.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.1.7.tgz",
-  "_shasum": "d3267004c8f27b6d4a7373fa63e59aede5cb2553",
-  "_spec": "strapi-plugin-content-manager@3.1.7",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.3.0.tgz",
+  "_shasum": "4eb28ed6d911a68590504023531bccc272f6f43d",
+  "_spec": "strapi-plugin-content-manager@3.3.0",
   "_where": "/Users/gamanox/wtf/magna-api",
   "author": {
     "name": "Strapi team",
@@ -38,6 +36,12 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "@buffetjs/core": "3.3.1",
+    "@buffetjs/custom": "3.3.1",
+    "@buffetjs/hooks": "3.3.1",
+    "@buffetjs/icons": "3.3.1",
+    "@buffetjs/styles": "3.3.1",
+    "@buffetjs/utils": "3.3.1",
     "@sindresorhus/slugify": "1.1.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.46.0",
@@ -67,17 +71,18 @@
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
     "reselect": "^4.0.0",
-    "strapi-helper-plugin": "3.1.7",
-    "strapi-utils": "3.1.7",
+    "sanitize-html": "2.1.1",
+    "strapi-helper-plugin": "3.3.0",
+    "strapi-utils": "3.3.0",
     "yup": "^0.27.0"
   },
   "deprecated": false,
   "description": "A powerful UI to easily manage your data.",
   "engines": {
-    "node": ">=10.16.0 <13",
+    "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
   },
-  "gitHead": "564f9228ca236f310d54e0ed94deee750f52301e",
+  "gitHead": "ec1c2a22c3b381eabe872535c01bd9bd8e874f5f",
   "homepage": "https://github.com/strapi/strapi#readme",
   "license": "SEE LICENSE IN LICENSE",
   "maintainers": [
@@ -98,5 +103,5 @@
     "description": "content-manager.plugin.description",
     "required": true
   },
-  "version": "3.1.7"
+  "version": "3.3.0"
 }

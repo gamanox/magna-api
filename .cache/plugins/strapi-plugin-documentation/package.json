@@ -1,26 +1,26 @@
 {
-  "_from": "strapi-plugin-documentation@3.1.7",
-  "_id": "strapi-plugin-documentation@3.1.7",
+  "_from": "strapi-plugin-documentation@3.3.0",
+  "_id": "strapi-plugin-documentation@3.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-zSB2Eq9+I47WGcdTk/NvumrhW24CBKhrOGx7PE+z84WbrK3LNtM4jVx+OetO5QWAnT6RIB4I6YFXdc/7k+0xsQ==",
+  "_integrity": "sha512-qI7ceLgGONeQtBPgYgkYKOdppkG5YjhrS9aCPn+arj66WjZG7QXYZH4ggGRwFsubaFpzL8RMdysVQ9zNjsj8qg==",
   "_location": "/strapi-plugin-documentation",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "strapi-plugin-documentation@3.1.7",
+    "raw": "strapi-plugin-documentation@3.3.0",
     "name": "strapi-plugin-documentation",
     "escapedName": "strapi-plugin-documentation",
-    "rawSpec": "3.1.7",
+    "rawSpec": "3.3.0",
     "saveSpec": null,
-    "fetchSpec": "3.1.7"
+    "fetchSpec": "3.3.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-documentation/-/strapi-plugin-documentation-3.1.7.tgz",
-  "_shasum": "f7c021f5209af472c4d9f51d4248521662994a04",
-  "_spec": "strapi-plugin-documentation@3.1.7",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-documentation/-/strapi-plugin-documentation-3.3.0.tgz",
+  "_shasum": "6fc92765201f1f1256794c191afd43b940e09618",
+  "_spec": "strapi-plugin-documentation@3.3.0",
   "_where": "/Users/gamanox/wtf/magna-api",
   "author": {
     "name": "soupette",
@@ -42,6 +42,12 @@
     }
   ],
   "dependencies": {
+    "@buffetjs/core": "3.3.1",
+    "@buffetjs/custom": "3.3.1",
+    "@buffetjs/hooks": "3.3.1",
+    "@buffetjs/icons": "3.3.1",
+    "@buffetjs/styles": "3.3.1",
+    "@buffetjs/utils": "3.3.1",
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^9.0.1",
     "immutable": "^3.8.2",
@@ -60,16 +66,16 @@
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
     "reselect": "^4.0.0",
-    "strapi-helper-plugin": "3.1.7",
-    "swagger-ui-dist": "3.24.3"
+    "strapi-helper-plugin": "3.3.0",
+    "swagger-ui-dist": "3.35.0"
   },
   "deprecated": false,
   "description": "This is the description of the plugin.",
   "engines": {
-    "node": ">=10.16.0 <13",
+    "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
   },
-  "gitHead": "564f9228ca236f310d54e0ed94deee750f52301e",
+  "gitHead": "ec1c2a22c3b381eabe872535c01bd9bd8e874f5f",
   "license": "SEE LICENSE IN LICENSE",
   "maintainers": [
     {
@@ -95,5 +101,5 @@
     "icon": "book",
     "description": "Create an OpenAPI Document and visualize your API with SWAGGER UI."
   },
-  "version": "3.1.7"
+  "version": "3.3.0"
 }

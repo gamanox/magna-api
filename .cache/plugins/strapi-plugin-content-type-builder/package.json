@@ -1,32 +1,30 @@
 {
-  "_from": "strapi-plugin-content-type-builder@3.1.7",
-  "_id": "strapi-plugin-content-type-builder@3.1.7",
+  "_from": "strapi-plugin-content-type-builder@3.3.0",
+  "_id": "strapi-plugin-content-type-builder@3.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-l5gbnvM/A6aYV7VDfvfB4E6s0qLxyHI9r0CPG2cex3uyaOn8zGuLXdBEHMZFYn1w9no6a1yActH/CVa7NYKhrg==",
+  "_integrity": "sha512-1AmiBRNKQKO14zNcf5OebmqY4WICdFNQEIFZKjDnRAfbi0BpBk5y4xa8MY1/93rejoD2QL22Tp9+hooUbbvScw==",
   "_location": "/strapi-plugin-content-type-builder",
   "_phantomChildren": {
     "@babel/runtime": "7.12.5",
-    "fn-name": "2.0.1",
-    "property-expr": "1.5.1",
     "synchronous-promise": "2.0.15",
     "toposort": "2.0.2"
   },
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "strapi-plugin-content-type-builder@3.1.7",
+    "raw": "strapi-plugin-content-type-builder@3.3.0",
     "name": "strapi-plugin-content-type-builder",
     "escapedName": "strapi-plugin-content-type-builder",
-    "rawSpec": "3.1.7",
+    "rawSpec": "3.3.0",
     "saveSpec": null,
-    "fetchSpec": "3.1.7"
+    "fetchSpec": "3.3.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-content-type-builder/-/strapi-plugin-content-type-builder-3.1.7.tgz",
-  "_shasum": "f09912cd5da84c4aa9d614dd2bfd4a96a77438ad",
-  "_spec": "strapi-plugin-content-type-builder@3.1.7",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-content-type-builder/-/strapi-plugin-content-type-builder-3.3.0.tgz",
+  "_shasum": "790245c0142ae369e7ac42684f6c5372c6e2deae",
+  "_spec": "strapi-plugin-content-type-builder@3.3.0",
   "_where": "/Users/gamanox/wtf/magna-api",
   "author": {
     "name": "Strapi team",
@@ -38,6 +36,12 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "@buffetjs/core": "3.3.1",
+    "@buffetjs/custom": "3.3.1",
+    "@buffetjs/hooks": "3.3.1",
+    "@buffetjs/icons": "3.3.1",
+    "@buffetjs/styles": "3.3.1",
+    "@buffetjs/utils": "3.3.1",
     "@sindresorhus/slugify": "1.1.0",
     "fs-extra": "^9.0.1",
     "immutable": "^3.8.2",
@@ -53,19 +57,19 @@
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
     "reselect": "^4.0.0",
-    "strapi-generate": "3.1.7",
-    "strapi-generate-api": "3.1.7",
-    "strapi-helper-plugin": "3.1.7",
-    "strapi-utils": "3.1.7",
+    "strapi-generate": "3.3.0",
+    "strapi-generate-api": "3.3.0",
+    "strapi-helper-plugin": "3.3.0",
+    "strapi-utils": "3.3.0",
     "yup": "^0.27.0"
   },
   "deprecated": false,
   "description": "Strapi plugin to create content type (API).",
   "engines": {
-    "node": ">=10.16.0 <13",
+    "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
   },
-  "gitHead": "564f9228ca236f310d54e0ed94deee750f52301e",
+  "gitHead": "ec1c2a22c3b381eabe872535c01bd9bd8e874f5f",
   "homepage": "https://github.com/strapi/strapi#readme",
   "license": "SEE LICENSE IN LICENSE",
   "maintainers": [
@@ -85,5 +89,5 @@
     "icon": "paint-brush",
     "description": "content-type-builder.plugin.description"
   },
-  "version": "3.1.7"
+  "version": "3.3.0"
 }

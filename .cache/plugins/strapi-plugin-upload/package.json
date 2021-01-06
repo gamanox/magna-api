@@ -1,41 +1,47 @@
 {
-  "_from": "strapi-plugin-upload@3.1.7",
-  "_id": "strapi-plugin-upload@3.1.7",
+  "_from": "strapi-plugin-upload@3.3.0",
+  "_id": "strapi-plugin-upload@3.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-BpvElVonbMplBmZMDCHP3ewMv2XHr6WZk/DGwxEnNjoPCHVaL+hyDGrzGmTPkUceegvFKx7eIw08T+/FYqbMEA==",
+  "_integrity": "sha512-Wx8sRkODEC1UXznTvj9yrGEk7wIT5okzHYIlJVBOFcowlPcqULBfGhtlB1Vf48sMF30Jrg1LYVL1PVfnGQpD/A==",
   "_location": "/strapi-plugin-upload",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "strapi-plugin-upload@3.1.7",
+    "raw": "strapi-plugin-upload@3.3.0",
     "name": "strapi-plugin-upload",
     "escapedName": "strapi-plugin-upload",
-    "rawSpec": "3.1.7",
+    "rawSpec": "3.3.0",
     "saveSpec": null,
-    "fetchSpec": "3.1.7"
+    "fetchSpec": "3.3.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-upload/-/strapi-plugin-upload-3.1.7.tgz",
-  "_shasum": "736b0ccb48cff17a7bf9399df1d47f10ef269a4a",
-  "_spec": "strapi-plugin-upload@3.1.7",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-upload/-/strapi-plugin-upload-3.3.0.tgz",
+  "_shasum": "46e59310ab9d11bf510fe5886b801abcf97fcd67",
+  "_spec": "strapi-plugin-upload@3.3.0",
   "_where": "/Users/gamanox/wtf/magna-api",
   "author": {
     "name": "A Strapi developer"
   },
   "bundleDependencies": false,
   "dependencies": {
+    "@buffetjs/core": "3.3.1",
+    "@buffetjs/custom": "3.3.1",
+    "@buffetjs/hooks": "3.3.1",
+    "@buffetjs/icons": "3.3.1",
+    "@buffetjs/styles": "3.3.1",
+    "@buffetjs/utils": "3.3.1",
     "byte-size": "^6.2.0",
     "cropperjs": "^1.5.6",
-    "immer": "^7.0.8",
+    "immer": "^7.0.14",
     "immutable": "^3.8.2",
     "is-valid-domain": "0.0.15",
     "koa-range": "0.3.0",
     "koa-static": "^5.0.0",
     "lodash": "4.17.19",
-    "node-fetch": "2.6.0",
+    "node-fetch": "2.6.1",
     "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.9.0",
@@ -44,20 +50,20 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "reactstrap": "8.4.1",
-    "sharp": "0.26.0",
-    "strapi-helper-plugin": "3.1.7",
-    "strapi-provider-upload-local": "3.1.7",
-    "strapi-utils": "3.1.7",
+    "sharp": "0.26.2",
+    "strapi-helper-plugin": "3.3.0",
+    "strapi-provider-upload-local": "3.3.0",
+    "strapi-utils": "3.3.0",
     "stream-to-array": "^2.3.0",
     "uuid": "^3.2.1"
   },
   "deprecated": false,
   "description": "This is the description of the plugin.",
   "engines": {
-    "node": ">=10.16.0 <13",
+    "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
   },
-  "gitHead": "564f9228ca236f310d54e0ed94deee750f52301e",
+  "gitHead": "ec1c2a22c3b381eabe872535c01bd9bd8e874f5f",
   "license": "SEE LICENSE IN LICENSE",
   "maintainers": [
     {
@@ -74,5 +80,5 @@
     "description": "upload.plugin.description",
     "required": true
   },
-  "version": "3.1.7"
+  "version": "3.3.0"
 }
