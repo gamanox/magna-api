@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Prompt, useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { get, has, isEqual } from 'lodash';
-import {
-  BackHeader,
-  ListWrapper,
-  useGlobalContext,
-  LayoutIcon,
-} from 'strapi-helper-plugin';
+import { BackHeader, ListWrapper, useGlobalContext, LayoutIcon } from 'strapi-helper-plugin';
 import { Header } from '@buffetjs/custom';
 import ListViewContext from '../../contexts/ListViewContext';
 import convertAttrObjToArray from '../../utils/convertAttrObjToArray';
@@ -56,20 +51,14 @@ const ListView = () => {
   }, []);
 
   const firstMainDataPath = isInContentTypeView ? 'contentType' : 'component';
-  const mainDataTypeAttributesPath = [
-    firstMainDataPath,
-    'schema',
-    'attributes',
-  ];
+  const mainDataTypeAttributesPath = [firstMainDataPath, 'schema', 'attributes'];
   const targetUid = get(modifiedData, [firstMainDataPath, 'uid']);
+  const isTemporary = get(modifiedData, [firstMainDataPath, 'isTemporary'], false);
+  const contentTypeKind = get(modifiedData, [firstMainDataPath, 'schema', 'kind'], null);
 
   const attributes = get(modifiedData, mainDataTypeAttributesPath, {});
   const attributesLength = Object.keys(attributes).length;
-  const currentDataName = get(
-    initialData,
-    [firstMainDataPath, 'schema', 'name'],
-    ''
-  );
+  const currentDataName = get(initialData, [firstMainDataPath, 'schema', 'name'], '');
   const isFromPlugin = has(initialData, [firstMainDataPath, 'plugin']);
   const hasModelBeenModified = !isEqual(modifiedData, initialData);
   const forTarget = isInContentTypeView ? 'contentType' : 'component';
@@ -161,11 +150,7 @@ const ListView = () => {
   };
 
   const getDescription = () => {
-    const description = get(
-      modifiedData,
-      [firstMainDataPath, 'schema', 'description'],
-      null
-    );
+    const description = get(modifiedData, [firstMainDataPath, 'schema', 'description'], null);
 
     return (
       description ||
@@ -181,6 +166,7 @@ const ListView = () => {
     return new Promise(resolve => setTimeout(resolve, 100));
   };
   const label = get(modifiedData, [firstMainDataPath, 'schema', 'name'], '');
+  const kind = get(modifiedData, [firstMainDataPath, 'schema', 'kind'], '');
 
   const headerProps = {
     actions: isInDevelopmentMode
@@ -217,8 +203,13 @@ const ListView = () => {
               onClick: async () => {
                 await wait();
 
-                if (firstMainDataPath === 'contentType') {
+                const contentType = kind || firstMainDataPath;
+
+                if (contentType === 'collectionType') {
                   emitEvent('willEditNameOfContentType');
+                }
+                if (contentType === 'singleType') {
+                  emitEvent('willEditNameOfSingleType');
                 }
 
                 push({
@@ -230,7 +221,8 @@ const ListView = () => {
                     targetUid,
                     header_label_1: label,
                     header_icon_isCustom_1: false,
-                    header_icon_name_1: firstMainDataPath,
+                    header_icon_name_1:
+                      contentType === 'singleType' ? contentType : firstMainDataPath,
                     headerId: getTrad('modalForm.header-edit'),
                   }),
                 });
@@ -244,9 +236,7 @@ const ListView = () => {
   const listTitle = [
     formatMessage(
       {
-        id: `${pluginId}.table.attributes.title.${
-          attributesLength > 1 ? 'plural' : 'singular'
-        }`,
+        id: `${pluginId}.table.attributes.title.${attributesLength > 1 ? 'plural' : 'singular'}`,
       },
       { number: attributesLength }
     ),
@@ -254,13 +244,12 @@ const ListView = () => {
 
   const addButtonProps = {
     icon: true,
-    className: 'add-button',
     color: 'primary',
     label: formatMessage({ id: `${pluginId}.button.attributes.add.another` }),
     onClick: () => {
       const headerDisplayObject = {
         header_label_1: currentDataName,
-        header_icon_name_1: forTarget,
+        header_icon_name_1: forTarget === 'contentType' ? contentTypeKind : forTarget,
         header_icon_isCustom_1: false,
       };
       handleClickAddField(forTarget, targetUid, headerDisplayObject);
@@ -268,18 +257,21 @@ const ListView = () => {
   };
   const goToCMSettingsPage = () => {
     const endPoint = isInContentTypeView
-      ? `/plugins/content-manager/${targetUid}/ctm-configurations/edit-settings/content-types`
+      ? `/plugins/content-manager/${contentTypeKind}/${targetUid}/ctm-configurations/edit-settings/content-types`
       : `/plugins/content-manager/ctm-configurations/edit-settings/components/${targetUid}/`;
-    push(endPoint);
+
+    if (!isTemporary) {
+      push(endPoint);
+    }
   };
 
   const configureButtonProps = {
-    icon: <LayoutIcon className="colored" fill="#007eff" />,
+    icon: <LayoutIcon className="colored" fill={isTemporary ? '#B4B6BA' : '#007eff'} />,
     color: 'secondary',
     label: formatMessage({ id: `${pluginId}.form.button.configure-view` }),
     onClick: goToCMSettingsPage,
-    style: { height: '30px', marginTop: '1px' },
-    className: 'button-secondary',
+    style: { marginTop: '2px' },
+    disabled: isTemporary,
   };
 
   const listActions = isInDevelopmentMode
@@ -289,14 +281,7 @@ const ListView = () => {
   const CustomRow = props => {
     const { name } = props;
 
-    return (
-      <ListRow
-        {...props}
-        attributeName={name}
-        name={name}
-        onClick={handleClickEditField}
-      />
-    );
+    return <ListRow {...props} attributeName={name} name={name} onClick={handleClickEditField} />;
   };
 
   CustomRow.defaultProps = {
@@ -308,9 +293,7 @@ const ListView = () => {
   };
 
   return (
-    <ListViewContext.Provider
-      value={{ openModalAddField: handleClickAddField }}
-    >
+    <ListViewContext.Provider value={{ openModalAddField: handleClickAddField }}>
       <Wrapper>
         <BackHeader onClick={goBack} />
         <Prompt
@@ -320,10 +303,7 @@ const ListView = () => {
         <div className="container-fluid">
           <div className="row">
             <LeftMenu wait={wait} />
-            <div
-              className="col-md-9 content"
-              style={{ paddingLeft: '30px', paddingRight: '30px' }}
-            >
+            <div className="col-md-9 content" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
               <Header {...headerProps} />
 
               <ListWrapper style={{ marginBottom: 80 }}>

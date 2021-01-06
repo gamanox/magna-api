@@ -9,20 +9,13 @@ import { useHistory, useParams } from 'react-router-dom';
 import { get, isEmpty, isEqual, omit } from 'lodash';
 import { Header, Inputs as InputsIndex } from '@buffetjs/custom';
 import { Play } from '@buffetjs/icons';
-import {
-  request,
-  useGlobalContext,
-  getYupInnerErrors,
-  BackHeader,
-} from 'strapi-helper-plugin';
+import { request, useGlobalContext, getYupInnerErrors, BackHeader } from 'strapi-helper-plugin';
 
 import Inputs from '../../../components/Inputs';
 import TriggerContainer from '../../../components/TriggerContainer';
 
 import reducer, { initialState } from './reducer';
-import form from './utils/form';
-import schema from './utils/schema';
-import { cleanData } from './utils/formatData';
+import { cleanData, form, schema } from './utils';
 
 import Wrapper from './Wrapper';
 
@@ -84,8 +77,7 @@ function EditView() {
 
   const areActionDisabled = isEqual(initialData, modifiedData);
 
-  const isTriggerActionDisabled =
-    isCreating || (!isCreating && !areActionDisabled) || isTriggering;
+  const isTriggerActionDisabled = isCreating || (!isCreating && !areActionDisabled) || isTriggering;
 
   const formattedErrors = Object.keys(formErrors)
     .filter(key => key.includes('headers'))
@@ -100,7 +92,6 @@ function EditView() {
       id: 'Settings.webhooks.create',
     })
     : name;
-
   const headersActions = [
     {
       color: 'primary',
@@ -109,9 +100,6 @@ function EditView() {
         id: 'Settings.webhooks.trigger',
       }),
       onClick: () => handleTrigger(),
-      style: {
-        padding: '0 15px',
-      },
       title: isTriggerActionDisabled
         ? formatMessage({
           id: 'Settings.webhooks.trigger.save',
@@ -119,11 +107,7 @@ function EditView() {
         : null,
       type: 'button',
       icon: (
-        <Play
-          width="14px"
-          height="14px"
-          fill={isTriggerActionDisabled ? '#b4b6ba' : '#ffffff'}
-        />
+        <Play width="8px" height="10px" fill={isTriggerActionDisabled ? '#b4b6ba' : '#ffffff'} />
       ),
     },
     {
@@ -134,7 +118,8 @@ function EditView() {
       }),
       onClick: () => handleReset(),
       style: {
-        padding: '0 20px',
+        paddingLeft: '20px',
+        paddingRight: '20px',
       },
       type: 'button',
     },

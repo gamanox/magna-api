@@ -1,27 +1,27 @@
 {
-  "_from": "strapi-plugin-email@3.0.0-beta.18.7",
-  "_id": "strapi-plugin-email@3.0.0-beta.18.7",
+  "_from": "strapi-plugin-email@3.0.0",
+  "_id": "strapi-plugin-email@3.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-CSjX+moQqjcsdpmeTjCObAGuUumPXnxFAjmMLlX+QJBMWKfXYEkauEuAR8tp6frNNQcKFa8nHfdr5mITRbQJLA==",
+  "_integrity": "sha512-XKAjU+NoHBxxkgCLp92nvkUw21EZGbQo8AIB0I2j+qQT1fYUanFAXr3/41Q9WBhLa3+M5y2TsqiPlGahX2OguQ==",
   "_location": "/strapi-plugin-email",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "strapi-plugin-email@3.0.0-beta.18.7",
+    "raw": "strapi-plugin-email@3.0.0",
     "name": "strapi-plugin-email",
     "escapedName": "strapi-plugin-email",
-    "rawSpec": "3.0.0-beta.18.7",
+    "rawSpec": "3.0.0",
     "saveSpec": null,
-    "fetchSpec": "3.0.0-beta.18.7"
+    "fetchSpec": "3.0.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-email/-/strapi-plugin-email-3.0.0-beta.18.7.tgz",
-  "_shasum": "5bde74cb42602c62afc6b34cb87f499bfe5fa3c9",
-  "_spec": "strapi-plugin-email@3.0.0-beta.18.7",
-  "_where": "/home/supervizor/supervizor-v2",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-email/-/strapi-plugin-email-3.0.0.tgz",
+  "_shasum": "0c289ea28ec9b0c8e261fa8ba361944ed553839c",
+  "_spec": "strapi-plugin-email@3.0.0",
+  "_where": "/Users/gamanox/wtf/magna-api",
   "author": {
     "name": "Strapi team",
     "email": "hi@strapi.io",
@@ -33,21 +33,20 @@
   "bundleDependencies": false,
   "dependencies": {
     "lodash": "^4.17.11",
-    "strapi-provider-email-sendmail": "3.0.0-beta.18.7",
-    "strapi-utils": "3.0.0-beta.18.7"
+    "strapi-provider-email-sendmail": "3.0.0",
+    "strapi-utils": "3.0.0"
   },
   "deprecated": false,
   "description": "This is the description of the plugin.",
   "devDependencies": {
-    "react-copy-to-clipboard": "5.0.1",
-    "rimraf": "^2.6.3",
-    "strapi-helper-plugin": "3.0.0-beta.18.7"
+    "rimraf": "3.0.0",
+    "strapi-helper-plugin": "3.0.0"
   },
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
-  "gitHead": "761ad68392c64a43507fa819640289e7e8224cd3",
+  "gitHead": "6bb7a7f198b13b0780547285d4214704ce991c23",
   "homepage": "https://github.com/strapi/strapi#readme",
   "license": "MIT",
   "maintainers": [
@@ -71,5 +70,5 @@
     "description": "email.plugin.description",
     "required": true
   },
-  "version": "3.0.0-beta.18.7"
+  "version": "3.0.0"
 }

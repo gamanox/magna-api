@@ -3,16 +3,17 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { get, isEmpty, isNull, isObject, toLower, toString } from 'lodash';
 import moment from 'moment';
-import { IcoContainer, useGlobalContext } from 'strapi-helper-plugin';
+import { useGlobalContext } from 'strapi-helper-plugin';
+import { IconLinks } from '@buffetjs/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import useListView from '../../hooks/useListView';
+import dateFormats from '../../utils/dateFormats';
 import CustomInputCheckbox from '../CustomInputCheckbox';
 import MediaPreviewList from '../MediaPreviewList';
 import { ActionContainer, Truncate, Truncated } from './styledComponents';
-import DATE_FORMATS from './DATE_FORMATS';
 
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-
-const dateToUtcTime = date => moment.parseZone(date).utc();
 
 const getDisplayedValue = (type, value, name) => {
   switch (toLower(type)) {
@@ -20,9 +21,8 @@ const getDisplayedValue = (type, value, name) => {
     case 'text':
     case 'email':
     case 'enumeration':
-      return (value && !isEmpty(toString(value))) || name === 'id'
-        ? toString(value)
-        : '-';
+    case 'uid':
+      return (value && !isEmpty(toString(value))) || name === 'id' ? toString(value) : '-';
     case 'float':
     case 'integer':
     case 'biginteger':
@@ -38,11 +38,9 @@ const getDisplayedValue = (type, value, name) => {
       }
 
       const date =
-        value && isObject(value) && value._isAMomentObject === true
-          ? JSON.stringify(value)
-          : value;
+        value && isObject(value) && value._isAMomentObject === true ? JSON.stringify(value) : value;
 
-      return dateToUtcTime(date).format(DATE_FORMATS[type]);
+      return moment(date).format(dateFormats[type]);
     }
     case 'password':
       return '••••••••';
@@ -51,6 +49,10 @@ const getDisplayedValue = (type, value, name) => {
     case 'files':
       return value;
     case 'time': {
+      if (!value) {
+        return '-';
+      }
+
       const [hour, minute, second] = value.split(':');
       const timeObj = {
         hour,
@@ -59,7 +61,7 @@ const getDisplayedValue = (type, value, name) => {
       };
       const date = moment().set(timeObj);
 
-      return date.format(DATE_FORMATS.time);
+      return date.format(dateFormats.time);
     }
     default:
       return '-';
@@ -67,12 +69,7 @@ const getDisplayedValue = (type, value, name) => {
 };
 
 function Row({ goTo, isBulkable, row, headers }) {
-  const {
-    entriesToDelete,
-    onChangeBulk,
-    onClickDelete,
-    schema,
-  } = useListView();
+  const { entriesToDelete, onChangeBulk, onClickDelete, schema } = useListView();
 
   const memoizedDisplayedValue = useCallback(
     name => {
@@ -85,6 +82,24 @@ function Row({ goTo, isBulkable, row, headers }) {
 
   const { emitEvent } = useGlobalContext();
 
+  const links = [
+    {
+      icon: <FontAwesomeIcon icon="pencil-alt" />,
+      onClick: () => {
+        emitEvent('willEditEntryFromList');
+        goTo(row.id);
+      },
+    },
+    {
+      icon: <FontAwesomeIcon icon="trash-alt" />,
+      onClick: e => {
+        e.stopPropagation();
+        emitEvent('willDeleteEntryFromList');
+        onClickDelete(row.id);
+      },
+    },
+  ];
+
   return (
     <>
       {isBulkable && (
@@ -92,10 +107,7 @@ function Row({ goTo, isBulkable, row, headers }) {
           <CustomInputCheckbox
             name={row.id}
             onChange={onChangeBulk}
-            value={
-              entriesToDelete.filter(id => toString(id) === toString(row.id))
-                .length > 0
-            }
+            value={entriesToDelete.filter(id => toString(id) === toString(row.id)).length > 0}
           />
         </td>
       )}
@@ -113,26 +125,7 @@ function Row({ goTo, isBulkable, row, headers }) {
         );
       })}
       <ActionContainer>
-        <IcoContainer
-          style={{ minWidth: 'inherit', width: '100%', lineHeight: 48 }}
-          icons={[
-            {
-              icoType: 'pencil-alt',
-              onClick: () => {
-                emitEvent('willEditEntryFromList');
-                goTo(row.id);
-              },
-            },
-            {
-              id: row.id,
-              icoType: 'trash',
-              onClick: () => {
-                emitEvent('willDeleteEntryFromList');
-                onClickDelete(row.id);
-              },
-            },
-          ]}
-        />
+        <IconLinks links={links} />
       </ActionContainer>
     </>
   );

@@ -1,49 +1,31 @@
 {
-  "_from": "strapi-plugin-documentation@3.0.0-beta.18.7",
-  "_id": "strapi-plugin-documentation@3.0.0-beta.18.7",
+  "_from": "strapi-plugin-documentation@3.0.0",
+  "_id": "strapi-plugin-documentation@3.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-FpeKSuPwPkHzl13ruZqULTgJsz6cS/Ypa2paEXod9uSbRay9uKqiZBleZvUFG+kWWGOV+OK53nzszdzY8QaPJg==",
+  "_integrity": "sha512-/jiItz8KO5xGUvFQgBQvoM/btoXuDk6++ii/3dgTQN7reuABJXERKCQU/wsa0J7OlJjGl5QsOWuZrb24xKtLGA==",
   "_location": "/strapi-plugin-documentation",
   "_phantomChildren": {
-    "@babel/runtime": "7.8.7",
-    "classnames": "2.2.6",
-    "create-react-context": "0.3.0",
-    "csstype": "2.6.9",
-    "graceful-fs": "4.2.3",
-    "hoist-non-react-statics": "3.3.2",
-    "is-arguments": "1.0.4",
-    "is-date-object": "1.0.2",
-    "is-regex": "1.0.5",
+    "graceful-fs": "4.2.4",
     "jsonfile": "4.0.0",
-    "loose-envify": "1.4.0",
-    "object-is": "1.0.2",
-    "object-keys": "1.1.1",
-    "popper.js": "1.16.1",
-    "prop-types": "15.7.2",
-    "react-is": "16.13.0",
-    "react-lifecycles-compat": "3.0.4",
-    "regexp.prototype.flags": "1.3.0",
-    "typed-styles": "0.0.7",
-    "universalify": "0.1.2",
-    "warning": "4.0.3"
+    "universalify": "0.1.2"
   },
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "strapi-plugin-documentation@3.0.0-beta.18.7",
+    "raw": "strapi-plugin-documentation@3.0.0",
     "name": "strapi-plugin-documentation",
     "escapedName": "strapi-plugin-documentation",
-    "rawSpec": "3.0.0-beta.18.7",
+    "rawSpec": "3.0.0",
     "saveSpec": null,
-    "fetchSpec": "3.0.0-beta.18.7"
+    "fetchSpec": "3.0.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-documentation/-/strapi-plugin-documentation-3.0.0-beta.18.7.tgz",
-  "_shasum": "e9e641b525ba6d07a8fc45aa4348c39ec8646501",
-  "_spec": "strapi-plugin-documentation@3.0.0-beta.18.7",
-  "_where": "/home/supervizor/supervizor-v2",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-documentation/-/strapi-plugin-documentation-3.0.0.tgz",
+  "_shasum": "b7607ebf87843d6204d52bdf705aee3f8f655359",
+  "_spec": "strapi-plugin-documentation@3.0.0",
+  "_where": "/Users/gamanox/wtf/magna-api",
   "author": {
     "name": "soupette",
     "email": "hi@strapi.io",
@@ -65,10 +47,8 @@
   ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "classnames": "^2.2.6",
     "fs-extra": "^8.1.0",
     "immutable": "^3.8.2",
-    "invariant": "^2.2.4",
     "koa-static": "^5.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
@@ -76,16 +56,15 @@
     "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.9.0",
-    "react-intl": "^2.9.0",
+    "react-intl": "^4.5.0",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-transition-group": "^4.0.1",
-    "reactstrap": "^8.0.0",
+    "reactstrap": "8.4.1",
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
     "reselect": "^4.0.0",
-    "strapi-helper-plugin": "3.0.0-beta.18.7",
+    "strapi-helper-plugin": "3.0.0",
     "swagger-ui-dist": "3.24.3"
   },
   "deprecated": false,
@@ -94,7 +73,7 @@
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
-  "gitHead": "761ad68392c64a43507fa819640289e7e8224cd3",
+  "gitHead": "6bb7a7f198b13b0780547285d4214704ce991c23",
   "license": "MIT",
   "maintainers": [
     {
@@ -120,5 +99,5 @@
     "icon": "book",
     "description": "Create an OpenAPI Document and visualize your API with SWAGGER UI."
   },
-  "version": "3.0.0-beta.18.7"
+  "version": "3.0.0"
 }

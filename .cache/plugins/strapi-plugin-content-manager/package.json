@@ -1,32 +1,36 @@
 {
-  "_from": "strapi-plugin-content-manager@3.0.0-beta.18.7",
-  "_id": "strapi-plugin-content-manager@3.0.0-beta.18.7",
+  "_from": "strapi-plugin-content-manager@3.0.0",
+  "_id": "strapi-plugin-content-manager@3.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-ewaFL3J0EaMFyJ7M5DKpVRndo2pT7zU5ecH/FiGKwjCiBc1H1NMg1pD1gkvLmZdBCH0MrO4zYlUPD+mSXSCWjA==",
+  "_integrity": "sha512-GsRUEieQtrYKg6nr7WYD6+aGgbVn2yRgT///d7gXwMhNRxPnsjU7RD4kum5R8UzCuCZi691RONMcHPh+H7qE0A==",
   "_location": "/strapi-plugin-content-manager",
   "_phantomChildren": {
-    "@babel/runtime": "7.8.7",
+    "@babel/runtime": "7.12.5",
+    "escape-string-regexp": "1.0.5",
+    "fn-name": "2.0.1",
     "lodash": "4.17.15",
-    "synchronous-promise": "2.0.10",
+    "lodash.deburr": "4.1.0",
+    "property-expr": "1.5.1",
+    "synchronous-promise": "2.0.15",
     "toposort": "2.0.2"
   },
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "strapi-plugin-content-manager@3.0.0-beta.18.7",
+    "raw": "strapi-plugin-content-manager@3.0.0",
     "name": "strapi-plugin-content-manager",
     "escapedName": "strapi-plugin-content-manager",
-    "rawSpec": "3.0.0-beta.18.7",
+    "rawSpec": "3.0.0",
     "saveSpec": null,
-    "fetchSpec": "3.0.0-beta.18.7"
+    "fetchSpec": "3.0.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.0.0-beta.18.7.tgz",
-  "_shasum": "156c1529397779b22d51e6ffc3ef28c585bff4dc",
-  "_spec": "strapi-plugin-content-manager@3.0.0-beta.18.7",
-  "_where": "/home/supervizor/supervizor-v2",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.0.0.tgz",
+  "_shasum": "f9c55171ff4683373590ff14180412953eeac221",
+  "_spec": "strapi-plugin-content-manager@3.0.0",
+  "_where": "/Users/gamanox/wtf/magna-api",
   "author": {
     "name": "Strapi team",
     "email": "hi@strapi.io",
@@ -37,29 +41,26 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "@sindresorhus/slugify": "0.9.1",
     "classnames": "^2.2.6",
     "codemirror": "^5.46.0",
-    "draft-js": "^0.10.5",
+    "draft-js": "^0.11.5",
     "immutable": "^3.8.2",
-    "invariant": "^2.2.1",
     "lodash": "^4.17.11",
     "pluralize": "^7.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-intl": "^2.8.0",
+    "react-intl": "^4.5.0",
     "react-redux": "^7.0.2",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-select": "^3.0.4",
-    "react-transition-group": "^2.5.0",
-    "reactstrap": "^5.0.0",
+    "reactstrap": "8.4.1",
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
-    "reselect": "^3.0.1",
+    "reselect": "^4.0.0",
     "showdown": "^1.9.0",
-    "strapi-helper-plugin": "3.0.0-beta.18.7",
-    "strapi-utils": "3.0.0-beta.18.7",
-    "styled-components": "^4.2.0",
+    "strapi-helper-plugin": "3.0.0",
+    "strapi-utils": "3.0.0",
     "yup": "^0.27.0"
   },
   "deprecated": false,
@@ -68,7 +69,7 @@
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
-  "gitHead": "761ad68392c64a43507fa819640289e7e8224cd3",
+  "gitHead": "6bb7a7f198b13b0780547285d4214704ce991c23",
   "homepage": "https://github.com/strapi/strapi#readme",
   "license": "MIT",
   "maintainers": [
@@ -89,5 +90,5 @@
     "description": "content-manager.plugin.description",
     "required": true
   },
-  "version": "3.0.0-beta.18.7"
+  "version": "3.0.0"
 }

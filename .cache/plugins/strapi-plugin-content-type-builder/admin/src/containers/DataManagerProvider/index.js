@@ -1,18 +1,13 @@
 import React, { memo, useEffect, useReducer, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { camelCase, get, groupBy, set, size, sortBy } from 'lodash';
+import { get, groupBy, set, size, chain } from 'lodash';
 import {
   request,
   LoadingIndicatorPage,
   useGlobalContext,
   PopUpWarning,
 } from 'strapi-helper-plugin';
-import {
-  useHistory,
-  useLocation,
-  useRouteMatch,
-  Redirect,
-} from 'react-router-dom';
+import { useHistory, useLocation, useRouteMatch, Redirect } from 'react-router-dom';
 import DataManagerContext from '../../contexts/DataManagerContext';
 import getTrad from '../../utils/getTrad';
 import makeUnique from '../../utils/makeUnique';
@@ -32,12 +27,14 @@ import {
   getComponentsToPost,
   formatMainDataType,
   getCreatedAndModifiedComponents,
+  sortContentType,
 } from './utils/cleanData';
 
 const DataManagerProvider = ({ allIcons, children }) => {
   const [reducerState, dispatch] = useReducer(reducer, initialState, init);
   const [infoModals, toggleInfoModal] = useState({ cancel: false });
   const {
+    autoReload,
     currentEnvironment,
     emitEvent,
     formatMessage,
@@ -50,21 +47,21 @@ const DataManagerProvider = ({ allIcons, children }) => {
     isLoadingForDataToBeSet,
     initialData,
     modifiedData,
+    reservedNames,
   } = reducerState.toJS();
   const { pathname } = useLocation();
   const { push } = useHistory();
-  const contentTypeMatch = useRouteMatch(
-    `/plugins/${pluginId}/content-types/:uid`
-  );
+  const contentTypeMatch = useRouteMatch(`/plugins/${pluginId}/content-types/:uid`);
   const componentMatch = useRouteMatch(
     `/plugins/${pluginId}/component-categories/:categoryUid/:componentUid`
   );
-  const isInDevelopmentMode = currentEnvironment === 'development';
+
+  const formatMessageRef = useRef();
+  formatMessageRef.current = formatMessage;
+  const isInDevelopmentMode = currentEnvironment === 'development' && autoReload;
 
   const isInContentTypeView = contentTypeMatch !== null;
-  const firstKeyToMainSchema = isInContentTypeView
-    ? 'contentType'
-    : 'component';
+  const firstKeyToMainSchema = isInContentTypeView ? 'contentType' : 'component';
   const currentUid = isInContentTypeView
     ? get(contentTypeMatch, 'params.uid', null)
     : get(componentMatch, 'params.componentUid', null);
@@ -78,8 +75,9 @@ const DataManagerProvider = ({ allIcons, children }) => {
       const [
         { data: componentsArray },
         { data: contentTypesArray },
+        reservedNames,
       ] = await Promise.all(
-        ['components', 'content-types'].map(endPoint => {
+        ['components', 'content-types', 'reserved-names'].map(endPoint => {
           return request(`/${pluginId}/${endPoint}`, {
             method: 'GET',
             signal,
@@ -100,6 +98,7 @@ const DataManagerProvider = ({ allIcons, children }) => {
         type: 'GET_DATA_SUCCEEDED',
         components: orderedComponents.get('components'),
         contentTypes: orderedContenTypes.get('components'),
+        reservedNames,
       });
     } catch (err) {
       console.error({ err });
@@ -114,15 +113,24 @@ const DataManagerProvider = ({ allIcons, children }) => {
   useEffect(() => {
     // We need to set the modifiedData after the data has been retrieved
     // and also on pathname change
-    if (!isLoading) {
+    if (!isLoading && currentUid) {
       setModifiedData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, pathname]);
+  }, [isLoading, pathname, currentUid]);
+
+  useEffect(() => {
+    if (currentEnvironment === 'development' && !autoReload) {
+      strapi.notification.info(
+        formatMessageRef.current({
+          id: getTrad('notification.info.autoreaload-disable'),
+        })
+      );
+    }
+  }, [autoReload, currentEnvironment]);
 
   const didModifiedComponents =
-    getCreatedAndModifiedComponents(modifiedData.components || {}, components)
-      .length > 0;
+    getCreatedAndModifiedComponents(modifiedData.components || {}, components).length > 0;
 
   const addAttribute = (
     attributeToSet,
@@ -144,10 +152,7 @@ const DataManagerProvider = ({ allIcons, children }) => {
     });
   };
 
-  const addCreatedComponentToDynamicZone = (
-    dynamicZoneTarget,
-    componentsToAdd
-  ) => {
+  const addCreatedComponentToDynamicZone = (dynamicZoneTarget, componentsToAdd) => {
     dispatch({
       type: 'ADD_CREATED_COMPONENT_TO_DYNAMIC_ZONE',
       dynamicZoneTarget,
@@ -167,10 +172,7 @@ const DataManagerProvider = ({ allIcons, children }) => {
     componentCategory,
     shouldAddComponentToData = false
   ) => {
-    const type =
-      schemaType === 'contentType'
-        ? 'CREATE_SCHEMA'
-        : 'CREATE_COMPONENT_SCHEMA';
+    const type = schemaType === 'contentType' ? 'CREATE_SCHEMA' : 'CREATE_COMPONENT_SCHEMA';
 
     dispatch({
       type,
@@ -190,15 +192,9 @@ const DataManagerProvider = ({ allIcons, children }) => {
     });
   };
 
-  const removeAttribute = (
-    mainDataKey,
-    attributeToRemoveName,
-    componentUid = ''
-  ) => {
+  const removeAttribute = (mainDataKey, attributeToRemoveName, componentUid = '') => {
     const type =
-      mainDataKey === 'components'
-        ? 'REMOVE_FIELD_FROM_DISPLAYED_COMPONENT'
-        : 'REMOVE_FIELD';
+      mainDataKey === 'components' ? 'REMOVE_FIELD_FROM_DISPLAYED_COMPONENT' : 'REMOVE_FIELD';
 
     if (mainDataKey === 'contentType') {
       emitEvent('willDeleteFieldOfContentType');
@@ -239,17 +235,11 @@ const DataManagerProvider = ({ allIcons, children }) => {
   const deleteData = async () => {
     try {
       const requestURL = `/${pluginId}/${endPoint}/${currentUid}`;
-      const isTemporary = get(
-        modifiedData,
-        [firstKeyToMainSchema, 'isTemporary'],
-        false
-      );
+      const isTemporary = get(modifiedData, [firstKeyToMainSchema, 'isTemporary'], false);
       const userConfirm = window.confirm(
         formatMessage({
           id: getTrad(
-            `popUpWarning.bodyMessage.${
-              isInContentTypeView ? 'contentType' : 'component'
-            }.delete`
+            `popUpWarning.bodyMessage.${isInContentTypeView ? 'contentType' : 'component'}.delete`
           ),
         })
       );
@@ -324,9 +314,7 @@ const DataManagerProvider = ({ allIcons, children }) => {
 
   const getAllNestedComponents = () => {
     const appNestedCompo = retrieveNestedComponents(components);
-    const editingDataNestedCompos = retrieveNestedComponents(
-      modifiedData.components || {}
-    );
+    const editingDataNestedCompos = retrieveNestedComponents(modifiedData.components || {});
 
     return makeUnique([...editingDataNestedCompos, ...appNestedCompo]);
   };
@@ -356,10 +344,7 @@ const DataManagerProvider = ({ allIcons, children }) => {
       isInContentTypeView
     );
 
-    const dataShape = orderAllDataAttributesWithImmutable(
-      newSchemaToSet,
-      isInContentTypeView
-    );
+    const dataShape = orderAllDataAttributesWithImmutable(newSchemaToSet, isInContentTypeView);
 
     // This prevents from losing the created content type or component when clicking on the link from the left menu
     const hasJustCreatedSchema =
@@ -373,18 +358,6 @@ const DataManagerProvider = ({ allIcons, children }) => {
     });
   };
 
-  const sortedContentTypesList = sortBy(
-    Object.keys(contentTypes)
-      .map(uid => ({
-        name: uid,
-        title: contentTypes[uid].schema.name,
-        uid,
-        to: `/plugins/${pluginId}/content-types/${uid}`,
-      }))
-      .filter(obj => obj !== null),
-    obj => camelCase(obj.title)
-  );
-
   const shouldRedirect = () => {
     const dataSet = isInContentTypeView ? contentTypes : components;
 
@@ -397,13 +370,9 @@ const DataManagerProvider = ({ allIcons, children }) => {
     return <Redirect to={`/plugins/${pluginId}/content-types/${firstCTUid}`} />;
   }
 
-  const submitData = async () => {
+  const submitData = async additionalContentTypeData => {
     try {
-      const isCreating = get(
-        modifiedData,
-        [firstKeyToMainSchema, 'isTemporary'],
-        false
-      );
+      const isCreating = get(modifiedData, [firstKeyToMainSchema, 'isTemporary'], false);
       const body = {
         components: getComponentsToPost(
           modifiedData.components,
@@ -414,7 +383,10 @@ const DataManagerProvider = ({ allIcons, children }) => {
       };
 
       if (isInContentTypeView) {
-        body.contentType = formatMainDataType(modifiedData.contentType);
+        body.contentType = {
+          ...formatMainDataType(modifiedData.contentType),
+          ...additionalContentTypeData,
+        };
 
         emitEvent('willSaveContentType');
       } else {
@@ -454,7 +426,7 @@ const DataManagerProvider = ({ allIcons, children }) => {
       if (!isInContentTypeView) {
         emitEvent('didNotSaveComponent');
       }
-      console.error({ err });
+      console.error({ err: err.response });
       strapi.notification.error('notification.error');
     }
   };
@@ -471,9 +443,15 @@ const DataManagerProvider = ({ allIcons, children }) => {
     try {
       const { data } = await request(requestURL, { method: 'GET' });
 
-      const menu = [{ name: 'Content Types', links: data }];
-
-      updatePlugin('content-manager', 'leftMenuSections', menu);
+      updatePlugin(
+        'content-manager',
+        'leftMenuSections',
+        chain(data)
+          .groupBy('schema.kind')
+          .map((value, key) => ({ name: key, links: value }))
+          .sortBy('name')
+          .value()
+      );
     } catch (err) {
       console.error({ err });
       strapi.notification.error('notification.error');
@@ -494,14 +472,11 @@ const DataManagerProvider = ({ allIcons, children }) => {
       value={{
         addAttribute,
         addCreatedComponentToDynamicZone,
-        allComponentsCategories: retrieveSpecificInfoFromComponents(
-          components,
-          ['category']
-        ),
-        allComponentsIconAlreadyTaken: retrieveSpecificInfoFromComponents(
-          components,
-          ['schema', 'icon']
-        ),
+        allComponentsCategories: retrieveSpecificInfoFromComponents(components, ['category']),
+        allComponentsIconAlreadyTaken: retrieveSpecificInfoFromComponents(components, [
+          'schema',
+          'icon',
+        ]),
         allIcons,
         changeDynamicZoneComponents,
         components,
@@ -519,8 +494,9 @@ const DataManagerProvider = ({ allIcons, children }) => {
         nestedComponents: getAllNestedComponents(),
         removeAttribute,
         removeComponentFromDynamicZone,
+        reservedNames,
         setModifiedData,
-        sortedContentTypesList,
+        sortedContentTypesList: sortContentType(contentTypes),
         submitData,
         toggleModalCancel,
         updateSchema,
