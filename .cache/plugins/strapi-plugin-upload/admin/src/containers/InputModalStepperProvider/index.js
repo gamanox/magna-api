@@ -2,6 +2,7 @@ import React, { useReducer, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { auth, request, generateSearchFromFilters, useGlobalContext } from 'strapi-helper-plugin';
 import { clone, get, isEmpty, set } from 'lodash';
+import { useIntl } from 'react-intl';
 import axios from 'axios';
 import pluginId from '../../pluginId';
 import {
@@ -15,12 +16,14 @@ import {
   formatFilters,
 } from '../../utils';
 import InputModalStepperContext from '../../contexts/InputModal/InputModalDataManager';
+
 import init from './init';
 import reducer, { initialState } from './reducer';
 
 /* eslint-disable indent */
 
 const InputModalStepperProvider = ({
+  allowedActions,
   allowedTypes,
   children,
   initialFilesToUpload,
@@ -34,6 +37,8 @@ const InputModalStepperProvider = ({
   step,
 }) => {
   const [formErrors, setFormErrors] = useState(null);
+
+  const { formatMessage } = useIntl();
   const { emitEvent, plugins } = useGlobalContext();
   const [, updated_at] = getFileModelTimestamps(plugins);
   const [reducerState, dispatch] = useReducer(reducer, initialState, state =>
@@ -335,12 +340,14 @@ const InputModalStepperProvider = ({
   };
 
   const fetchMediaLib = async () => {
-    const [files, count] = await Promise.all([fetchMediaLibFiles(), fetchMediaLibFilesCount()]);
-    dispatch({
-      type: 'GET_DATA_SUCCEEDED',
-      files,
-      countData: count,
-    });
+    if (allowedActions.canRead) {
+      const [files, count] = await Promise.all([fetchMediaLibFiles(), fetchMediaLibFilesCount()]);
+      dispatch({
+        type: 'GET_DATA_SUCCEEDED',
+        files,
+        countData: count,
+      });
+    }
   };
 
   const fetchMediaLibFiles = async () => {
@@ -419,7 +426,7 @@ const InputModalStepperProvider = ({
               return true;
             }
 
-            return allowedTypes.includes(fileType);
+            return allowedTypes.length === 0 || allowedTypes.includes(fileType);
           });
 
           dispatch({
@@ -431,11 +438,16 @@ const InputModalStepperProvider = ({
         } catch (err) {
           const status = get(err, 'response.status', get(err, 'status', null));
           const statusText = get(err, 'response.statusText', get(err, 'statusText', null));
-          const errorMessage = get(
+          let errorMessage = get(
             err,
             ['response', 'payload', 'message', '0', 'messages', '0', 'message'],
             get(err, ['response', 'payload', 'message'], statusText)
           );
+
+          // TODO fix errors globally when the back-end sends readable one
+          if (status === 413) {
+            errorMessage = formatMessage({ id: 'app.utils.errors.file-too-big.message' });
+          }
 
           if (status) {
             dispatch({
@@ -455,6 +467,7 @@ const InputModalStepperProvider = ({
     <InputModalStepperContext.Provider
       value={{
         ...reducerState,
+        allowedActions,
         addFilesToUpload,
         downloadFiles,
         fetchMediaLib,
@@ -495,6 +508,15 @@ const InputModalStepperProvider = ({
 };
 
 InputModalStepperProvider.propTypes = {
+  allowedActions: PropTypes.shape({
+    canCopyLink: PropTypes.bool,
+    canCreate: PropTypes.bool,
+    canDownload: PropTypes.bool,
+    canMain: PropTypes.bool,
+    canRead: PropTypes.bool,
+    canSettings: PropTypes.bool,
+    canUpdate: PropTypes.bool,
+  }),
   allowedTypes: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node.isRequired,
   initialFilesToUpload: PropTypes.object,
@@ -509,6 +531,15 @@ InputModalStepperProvider.propTypes = {
 };
 
 InputModalStepperProvider.defaultProps = {
+  allowedActions: {
+    canCopyLink: true,
+    canCreate: true,
+    canDownload: true,
+    canMain: true,
+    canRead: true,
+    canSettings: true,
+    canUpdate: true,
+  },
   initialFileToEdit: null,
   initialFilesToUpload: null,
   isOpen: false,

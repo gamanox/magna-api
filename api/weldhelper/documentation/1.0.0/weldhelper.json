@@ -583,6 +583,12 @@
               },
               "related": {
                 "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -608,6 +614,12 @@
               },
               "sector": {
                 "type": "integer"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           }
@@ -622,6 +634,12 @@
             "type": "string"
           },
           "welds": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
             "type": "string"
           }
         }

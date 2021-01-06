@@ -547,6 +547,12 @@
               },
               "assigned_welds": {
                 "type": "component"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -581,6 +587,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -668,6 +680,12 @@
                       "type": "object"
                     },
                     "related": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
                       "type": "string"
                     }
                   }
@@ -779,6 +797,12 @@
                     },
                     "related": {
                       "type": "string"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
+                      "type": "string"
                     }
                   }
                 },
@@ -792,6 +816,12 @@
             }
           },
           "Model_Number": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
             "type": "string"
           }
         }
