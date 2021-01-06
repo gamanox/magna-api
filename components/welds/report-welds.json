@@ -20,17 +20,11 @@
       "plugin": "upload",
       "required": false
     },
-    "defect": {
-      "type": "enumeration",
-      "enum": [
-        "incomplete",
-        "missing",
-        "rework",
-        "good"
-      ]
-    },
     "operator_assigned_weld_id": {
       "type": "integer"
+    },
+    "defect": {
+      "type": "string"
     }
   }
 }

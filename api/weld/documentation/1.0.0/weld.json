@@ -558,6 +558,31 @@
                 }
               }
             }
+          },
+          "weldhelper": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "help": {
+                "type": "string"
+              },
+              "ImageHelp": {
+                "type": "string"
+              },
+              "HelpTitle": {
+                "type": "string"
+              },
+              "welds": {
+                "type": "string"
+              }
+            }
+          },
+          "sector": {
+            "type": "integer"
           }
         }
       },
@@ -568,6 +593,12 @@
           },
           "chassis": {
             "type": "string"
+          },
+          "weldhelper": {
+            "type": "string"
+          },
+          "sector": {
+            "type": "integer"
           }
         }
       }

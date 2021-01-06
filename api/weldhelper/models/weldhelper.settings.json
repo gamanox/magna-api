@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "weldhelpers",
+  "info": {
+    "name": "weldhelper"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "help": {
+      "type": "text"
+    },
+    "ImageHelp": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "HelpTitle": {
+      "type": "string"
+    },
+    "welds": {
+      "collection": "weld"
+    }
+  }
+}

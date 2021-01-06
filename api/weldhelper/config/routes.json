@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/weldhelpers",
+      "handler": "weldhelper.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/weldhelpers/count",
+      "handler": "weldhelper.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/weldhelpers/:id",
+      "handler": "weldhelper.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/weldhelpers",
+      "handler": "weldhelper.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/weldhelpers/:id",
+      "handler": "weldhelper.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/weldhelpers/:id",
+      "handler": "weldhelper.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

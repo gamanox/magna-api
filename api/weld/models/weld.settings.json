@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "welds",
   "info": {
     "name": "weld"
   },
@@ -13,8 +15,12 @@
     "chassis": {
       "model": "chassis",
       "via": "welds"
+    },
+    "weldhelper": {
+      "model": "weldhelper"
+    },
+    "sector": {
+      "type": "integer"
     }
-  },
-  "connection": "default",
-  "collectionName": "welds"
+  }
 }

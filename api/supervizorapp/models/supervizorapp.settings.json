@@ -1,0 +1,23 @@
+{
+  "info": {
+    "name": "supervizorapp"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "showdefectpanel": {
+      "type": "boolean",
+      "default": false
+    },
+    "resolutionw": {
+      "type": "biginteger"
+    },
+    "resolutionh": {
+      "type": "biginteger"
+    }
+  },
+  "connection": "default",
+  "collectionName": "supervizorapps"
+}

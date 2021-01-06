@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/supervizorapps",
+      "handler": "supervizorapp.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/supervizorapps/count",
+      "handler": "supervizorapp.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/supervizorapps/:id",
+      "handler": "supervizorapp.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/supervizorapps",
+      "handler": "supervizorapp.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/supervizorapps/:id",
+      "handler": "supervizorapp.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/supervizorapps/:id",
+      "handler": "supervizorapp.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

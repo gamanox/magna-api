@@ -632,6 +632,12 @@
                     },
                     "chassis": {
                       "type": "string"
+                    },
+                    "weldhelper": {
+                      "type": "string"
+                    },
+                    "sector": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -678,6 +684,12 @@
                     },
                     "chassis": {
                       "type": "string"
+                    },
+                    "weldhelper": {
+                      "type": "string"
+                    },
+                    "sector": {
+                      "type": "integer"
                     }
                   }
                 }

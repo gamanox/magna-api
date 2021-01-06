@@ -657,17 +657,11 @@
                     }
                   }
                 },
-                "defect": {
-                  "type": "string",
-                  "enum": [
-                    "incomplete",
-                    "missing",
-                    "rework",
-                    "good"
-                  ]
-                },
                 "operator_assigned_weld_id": {
                   "type": "integer"
+                },
+                "defect": {
+                  "type": "string"
                 }
               }
             }
@@ -758,17 +752,11 @@
                     }
                   }
                 },
-                "defect": {
-                  "type": "string",
-                  "enum": [
-                    "incomplete",
-                    "missing",
-                    "rework",
-                    "good"
-                  ]
-                },
                 "operator_assigned_weld_id": {
                   "type": "integer"
+                },
+                "defect": {
+                  "type": "string"
                 }
               }
             }
